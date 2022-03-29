@@ -1,9 +1,17 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <bsd/stdlib.h>
 
 static uint8_t symbols[70];
 
-void initSymbols() {
+void 
+errorMsg(const char * msg) {
+    fprintf(stderr, "%s", msg);
+    exit(EXIT_FAILURE);
+}
+
+void
+initSymbols() {
     for (unsigned i = 0; i <= 25; i++) {
         symbols[i] = (i + 65);
         symbols[i + 26] = (i + 97);
@@ -23,16 +31,37 @@ void initSymbols() {
     symbols[69] = 94;  
 }
 
-int main(int argc, char const *argv[]) {
+int 
+main(int argc, char ** argv) {
     initSymbols();  
 
+    int32_t opt, length;
+    char *length_str = NULL;
+    
+    while ((opt = getopt(argc, argv, "nl:s")) != -1) {
+        switch (opt) {
+            case 'l': 
+                length_str = optarg;
+                break;
+                
+            default:
+                errorMsg("error: input options are invalid\n");
+                break;
+        }
+    }
+    
+    length = strtol(length_str, NULL, 10);
+    
+    if (length <= 0)
+        length = 14;
+
     unsigned i = 0;
-    while (i < 32) {
+    while (i < length) {
         uint8_t n = arc4random_uniform(69);
         fprintf(stdout, "%c", symbols[n]);
         i++;
     }
     
     putc('\n', stdout);
-    return 0;
+    exit(EXIT_SUCCESS);
 }
