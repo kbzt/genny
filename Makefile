@@ -1,8 +1,14 @@
 cc = gcc
-cflags = -Og -Wextra -Wall -lbsd
+cflags = -O2 -Wextra -Wall -lbsd
 
 genny: main.o
 	gcc $(cflags) -o genny main.o
+
+install:
+	install -Dm 755 "genny" "/usr/bin/genny" 
+
+uninstall:
+	rm /usr/bin/genny
 
 clean: 
 	rm genny *.o
