@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <bsd/stdlib.h>
 
+#define default_length 14
+
 static uint8_t symbols[70];
 
 void 
@@ -53,7 +55,7 @@ main(int argc, char ** argv) {
     length = strtol(length_str, NULL, 10);
     
     if (length <= 0)
-        length = 14;
+        length = default_length;
 
     unsigned i = 0;
     while (i < length) {
