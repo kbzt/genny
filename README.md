@@ -11,7 +11,7 @@ as of now genny is only supported on gnu/linux.
 ~~~
 git clone https://github.com/kbzt/genny.git
 cd genny
-make genny
+make
 ./genny
 ~~~
 
