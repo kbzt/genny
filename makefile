@@ -1,24 +1,28 @@
 CC=clang
+PROJ=genny
 
 SRC_PATH=src
 OBJ_PATH=.obj
-PROJ_NAME=genny
+SRC=$(wildcard $(SRC_PATH)/*.c)
+OBJ=$(patsubst $(SRC_PATH)/%,$(OBJ_PATH)/%,$(SRC:.c=.o))
 
-CFLAGS=-Og -Wextra -Wall -std=c11
+CFLAGS=-ggdb3 -Og -Wall -Wextra -pedantic-errors -fstrict-aliasing -std=c99
 LFLAGS=-lbsd
 
+all: debug
+
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	$(CC) -o $(CFLAGS) 
+	$(CC) -c -o $@ $< $(CFLAGS) 
 
-genny: main.o
-	$(CC) $(CFLAGS) -o genny main.o
-
+debug: $(OBJ)
+	$(CC) -o $(PROJ) $^ $(LFLAGS)
+	
 install:
-	install -Dm 755 "genny" "/usr/bin/genny" 
+	install -Dm 755 $(PROJ) "/usr/bin/genny" 
 
 uninstall:
-	rm /usr/bin/genny
+	rm -f /usr/bin/genny
 
 clean: 
 	rm -rf $(OBJ)
-	rm -f genny
+	rm -f $(PROJ)

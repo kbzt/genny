@@ -35,9 +35,9 @@ initSymbols() {
 
 int 
 main(int argc, char ** argv) {
-    initSymbols();  
+   /* initSymbols();  
 
-    int32_t opt, length;
+    int8_t opt, length;
     char *length_str = NULL;
     
     while ((opt = getopt(argc, argv, "nl:s")) != -1) {
@@ -57,7 +57,7 @@ main(int argc, char ** argv) {
     if (length <= 0)
         length = default_length;
 
-    unsigned i = 0;
+    uint8_t i = 0;
     while (i < length) {
         uint8_t n = arc4random_uniform(69);
         fprintf(stdout, "%c", symbols[n]);
@@ -66,4 +66,8 @@ main(int argc, char ** argv) {
     
     putc('\n', stdout);
     exit(EXIT_SUCCESS);
+    */
+
+   puts("neat");
+   exit(EXIT_SUCCESS);
 }
