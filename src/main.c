@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <unistd.h>
+#include <getopt.h>
 #include <bsd/stdlib.h>
 
 #define default_length 14
@@ -12,8 +12,8 @@ errorMsg(const char * msg) {
     exit(EXIT_FAILURE);
 }
 
-void
-initSymbols() {
+uint8_t
+initSymbols(const uint8_t useNum, const uint8_t useSpecChar, const uint8_t useAlpha) {
     for (unsigned i = 0; i <= 25; i++) {
         symbols[i] = (i + 65);
         symbols[i + 26] = (i + 97);
@@ -31,33 +31,46 @@ initSymbols() {
     symbols[67] = 42;
     symbols[68] = 64;
     symbols[69] = 94;  
+
+    return 0;
 }
 
 int 
 main(int argc, char ** argv) {
-   /* initSymbols();  
 
-    int8_t opt, length;
+    u_int8_t useNum = 1, useSpecChars = 1, useAlpha = 1, length;
+
+    int8_t opt;
     char *length_str = NULL;
     
-    while ((opt = getopt(argc, argv, "nl:s")) != -1) {
+    while ((opt = getopt(argc, argv, "nsal:")) != -1) {
         switch (opt) {
+            case 'n':
+                useNum = 0;
+                break;
+            case 's':
+                useSpecChars = 0;
+                break;
+            case 'a':
+                useAlpha = 0;
+                break;
             case 'l': 
                 length_str = optarg;
                 break;
-                
             default:
                 errorMsg("error: input options are invalid\n");
                 break;
         }
     }
+
+    uint8_t size = initSymbols(useNum, useSpecChars, useAlpha);  
     
     length = strtol(length_str, NULL, 10);
     
     if (length <= 0)
         length = default_length;
 
-    uint8_t i = 0;
+    int8_t i = 0;
     while (i < length) {
         uint8_t n = arc4random_uniform(69);
         fprintf(stdout, "%c", symbols[n]);
@@ -66,8 +79,4 @@ main(int argc, char ** argv) {
     
     putc('\n', stdout);
     exit(EXIT_SUCCESS);
-    */
-
-   puts("neat");
-   exit(EXIT_SUCCESS);
 }
