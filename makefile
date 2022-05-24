@@ -12,9 +12,11 @@ OBJ=$(patsubst $(SRC_PATH)/%,$(OBJ_PATH)/%,$(SRC:.c=.o))
 all: debug
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir -p ./.obj
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
 debug: $(OBJ)
+	@mkdir -p ./.obj
 	$(CC) -o $(PROJ) $^ $(LFLAGS)
 	
 install:
