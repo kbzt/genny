@@ -2,8 +2,6 @@
 #include <getopt.h>
 #include <bsd/stdlib.h>
 
-#define default_length 14
-
 static uint8_t symbols[70];
 static u_int8_t tracker = 0;
 
@@ -79,7 +77,7 @@ int
 main(int argc, char ** argv) {
 
     u_int8_t useNum = 1, useSpecChars = 1, useAlpha = 1;
-    int64_t length, i = 0, n;
+    int64_t length = 14, i = 0, n;
     int8_t opt;
     char *length_str = NULL;
     
@@ -107,10 +105,12 @@ main(int argc, char ** argv) {
     }
 
     uint8_t size = initSymbols(useNum, useSpecChars, useAlpha);  
-    length = strtol(length_str, NULL, 10);
-    
+
+    if (length_str != NULL)
+        length = strtol(length_str, NULL, 10);
+
     if (length <= 0)
-        length = default_length;
+        length = 14;
 
     while (i < length) {
         n = arc4random_uniform(size);
