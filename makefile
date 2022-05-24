@@ -1,7 +1,7 @@
 PROJ=genny
 
 CC=clang
-CFLAGS=-ggdb3 -Og -Wall -Wextra -pedantic-errors -fstrict-aliasing -pipe -std=c11
+CFLAGS=-ggdb3 -O2 -Wall -Wextra -pedantic-errors -fstrict-aliasing -pipe -std=c11
 LFLAGS=-lbsd
 
 SRC_PATH=src
