@@ -29,7 +29,10 @@ make
 ./genny
 ~~~
 
-- <bsd/stdlib.h> (usually a part of glibc)
+- glibc [>=2.35-5]
+- clang [>=13.0.1]
+
+note: versions are just kept for tracking, will likely work with versions packaged by most linux distributions. gcc is also tested as working but will require edting the CC variable in makefile to compile :)
 
 ## install & remove
 
