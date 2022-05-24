@@ -4,6 +4,20 @@ minimal password generator for the command line that writes to stdout
 
 ## usage & examples
 
+~~~
+usage: genny [args] [value]
+
+  -h    show this help and exit.
+  -n    disable numbers (0-9)
+  -a    disable alphas (A-Z, a-z)
+  -s    disable special characters (!#$%&*@^)
+  -l    specify a length (default: 14)
+
+examples:
+  genny -al 22
+  genny -l 30 -a -s
+~~~
+
 as of now genny is only supported on gnu/linux.
 
 ## build & run
@@ -15,7 +29,7 @@ make
 ./genny
 ~~~
 
-note: make sure your os has an up to date version of glibc, or more specifically the bsd library.
+- <bsd/stdlib.h> (usually a part of glibc)
 
 ## install & remove
 
