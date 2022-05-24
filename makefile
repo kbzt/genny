@@ -1,6 +1,6 @@
 PROJ=genny
 
-CC=clang
+CC=gcc
 CFLAGS=-ggdb3 -O2 -Wall -Wextra -pedantic-errors -fstrict-aliasing -pipe -std=c11
 LFLAGS=-lbsd
 
