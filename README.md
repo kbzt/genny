@@ -22,7 +22,7 @@ as of now genny is only supported on gnu/linux.
 
 ## build & run
 
-~~~
+~~~sh
 git clone https://github.com/kbzt/genny.git
 cd genny
 make
@@ -37,11 +37,11 @@ note: versions are just kept for tracking, will likely work with versions packag
 ## install & remove
 
 to install genny to your system after building:
-~~~
+~~~sh
 sudo make install
 ~~~
 
 to remove genny from your system after installing:
-~~~
+~~~sh
 sudo make uninstall
 ~~~
