@@ -2,8 +2,10 @@
 #include <getopt.h>
 #include <bsd/stdlib.h>
 
-static uint8_t symbols[70];
-static u_int8_t tracker = 0;
+#include "types.h"
+
+static u8 symbols[70];
+static u8 tracker = 0;
 
 void
 printUsage() {
@@ -26,15 +28,14 @@ errorMsg(const char * msg) {
 }
 
 void
-addToArr(const uint8_t c) {
+addToArr(const u8 c) {
   symbols[tracker] = c;
   tracker++;
 }
 
-uint8_t
-initSymbols(const uint8_t useNum, const uint8_t useSpecChar, const uint8_t useAlpha) {
-
-  uint8_t size = 0;
+u8 
+initSymbols(const u8 useNum, const u8 useSpecChar, const u8 useAlpha) {
+  u8 size = 0;
 
   // A-Z, a-z
   if (useAlpha){
@@ -70,16 +71,14 @@ initSymbols(const uint8_t useNum, const uint8_t useSpecChar, const uint8_t useAl
 
     size += 8;
   }
-
   return size;
 }
 
 int
 main(int argc, char ** argv) {
-
-  u_int8_t useNum = 1, useSpecChars = 1, useAlpha = 1;
-  int64_t length = 14, i = 0, n;
-  int8_t opt;
+  u8 useNum = 1, useSpecChars = 1, useAlpha = 1;
+  i64 length = 14, i = 0, n;
+  i8 opt;
   char *length_str = NULL;
 
   while ((opt = getopt(argc, argv, "nsahl:")) != -1) {
@@ -105,7 +104,7 @@ main(int argc, char ** argv) {
       }
   }
 
-  uint8_t size = initSymbols(useNum, useSpecChars, useAlpha);
+  u8 size = initSymbols(useNum, useSpecChars, useAlpha);
 
   if (length_str != NULL)
       length = strtol(length_str, NULL, 10);
@@ -122,4 +121,3 @@ main(int argc, char ** argv) {
   putc('\n', stdout);
   exit(EXIT_SUCCESS);
 }
-
